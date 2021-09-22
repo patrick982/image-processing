@@ -2,42 +2,48 @@
 import os
 from PIL import Image, ImageEnhance
 
-#
-# Todo: loop to mass process
-#
-directory = 'input'
+# packing the whole post processing into a function
 
-for filename in os.listdir(directory):
 
-    image = Image.open(os.path.join(directory, filename))
-    # success check
-    # image.show()
+def image_processing():
+    directory = 'input'
 
-    # enhancing the contrast
-    contrast = ImageEnhance.Contrast(image)
-    image = contrast.enhance(1.5)
+    for filename in os.listdir(directory):
 
-    # enhancing color
-    color = ImageEnhance.Color(image)
-    image = color.enhance(1.5)
+        image = Image.open(os.path.join(directory, filename))
+        # success check
+        # image.show()
 
-    # hue shifts
-    color = Image.new('RGB', image.size, 'red')
-    image = Image.blend(image, color, 0.1)
+        # enhancing the contrast
+        contrast = ImageEnhance.Contrast(image)
+        image = contrast.enhance(1.5)
 
-    color = Image.new('RGB', image.size, 'yellow')
-    image = Image.blend(image, color, 0.001)
+        # enhancing color
+        color = ImageEnhance.Color(image)
+        image = color.enhance(1.5)
 
-    color = Image.new('RGB', image.size, 'blue')
-    image = Image.blend(image, color, -0.001)
+        # hue shifts
+        color = Image.new('RGB', image.size, 'red')
+        image = Image.blend(image, color, 0.1)
 
-    # enhancing brightness
-    color = ImageEnhance.Brightness(image)
-    image = color.enhance(1.2)
+        color = Image.new('RGB', image.size, 'yellow')
+        image = Image.blend(image, color, 0.001)
 
-    # enhancing sharpness
-    color = ImageEnhance.Sharpness(image)
-    image = color.enhance(1.5)
+        color = Image.new('RGB', image.size, 'blue')
+        image = Image.blend(image, color, -0.001)
 
-    # save the result
-    image.save(os.path.join('output', filename))
+        # enhancing brightness
+        color = ImageEnhance.Brightness(image)
+        image = color.enhance(1.2)
+
+        # enhancing sharpness
+        color = ImageEnhance.Sharpness(image)
+        image = color.enhance(1.5)
+
+        # save the result
+        image.save(os.path.join('output', filename))
+
+
+# calling that function
+
+image_processing()
