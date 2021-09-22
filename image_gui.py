@@ -3,46 +3,16 @@ import warnings
 import PySimpleGUI as sg
 import os
 from PIL import Image, ImageEnhance
-
-sg.theme('Dark Grey 5')  # please make your creations colorful
-
-# ------ Menu Definition ------ #
-menu_def = [['File', ['Exit', 'Properties']],
-            ['Help', 'About...'], ]
-
-layout = [[sg.Menu(menu_def, tearoff=True)],
-          [sg.Text('Input Folder')],
-          [sg.Input(), sg.FolderBrowse()],
-          [sg.Text('Output Folder')],
-          [sg.Input(), sg.FolderBrowse()],
-          [sg.OK(), sg.Cancel()]]
+from PySimpleGUI.PySimpleGUI import popup, popup_notify, popup_ok, popup_quick_message
 
 
-window = sg.Window('Automatic Underwater Image Postprocessing', layout)
-event, values = window.read()
+def image_processing():
+    #event, values = window.read()
+    input_path = values["Browse"]
+    output_path = values["Browse0"]
 
-# Menu Loop WIP
-"""
-while True:
-    event, values = window.read()
-    # print(values)
-    if event == sg.WIN_CLOSED or event == 'Exit':
-        break
-    elif event == 'About...':
-        sg.popup('About this program:', 'Automatic Underwater Image Postprocessing', 'Version 1.0',
-                 'Author: Patrick Stampler')
-"""
+    directory = input_path
 
-input_path = values["Browse"]
-output_path = values["Browse0"]
-
-
-# test if path value could be read in
-# print(path)
-
-directory = input_path
-
-try:
     for filename in os.listdir(directory):
         file_name, file_extension = os.path.splitext(filename)
 
@@ -79,10 +49,43 @@ try:
 
             # save the result
             image.save(os.path.join(output_path, filename))
-        else:
-            print("No .png, or .jpeg, or .jpg File found :(")
 
-except:
-    sg.popup_error("Filepaths cannot be empty!")
+            popup_quick_message("In Progress - please wait")
 
-window.close()
+    else:
+        print("No .png, or .jpeg, or .jpg File found :(")
+
+
+# please make your creations colorful
+sg.theme('Dark Grey 14')
+
+# ------ Menu Definition ------ #
+menu_def = [['File', ['Exit']],
+            ['Help', 'About...'], ]
+
+layout = [[sg.Menu(menu_def, tearoff=True)],
+          [sg.Text('Input Folder')],
+          [sg.Input(), sg.FolderBrowse()],
+          [sg.Text('Output Folder')],
+          [sg.Input(), sg.FolderBrowse()],
+          [sg.OK("Process"), sg.Button("Watermark"), sg.Exit()]]
+
+window = sg.Window('Automatic Underwater Image Postprocessing', layout)
+
+
+# Program Loop
+while True:
+    event, values = window.read()
+    if event == sg.WIN_CLOSED or event == 'Exit':
+        break
+    elif event == 'About...':
+        sg.popup('About this program:', 'Automatic Underwater Image Postprocessing', 'Version 1.0',
+                 'Author: Patrick Stampler')
+    elif event == 'Watermark':
+        popup_ok("Feature not ready..")
+    elif event == 'Process':
+        try:
+            image_processing()
+            popup_ok("done")
+        except:
+            sg.popup_error("Filepaths cannot be empty!")

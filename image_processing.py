@@ -2,11 +2,12 @@
 import os
 from PIL import Image, ImageEnhance
 
+directory = 'input'
+
 # packing the whole post processing into a function
 
 
-def image_processing():
-    directory = 'input'
+def image_processing(directory):
 
     for filename in os.listdir(directory):
 
@@ -46,4 +47,4 @@ def image_processing():
 
 # calling that function
 
-image_processing()
+image_processing(directory)

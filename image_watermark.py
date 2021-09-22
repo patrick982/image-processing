@@ -3,13 +3,10 @@ from PIL import Image, ImageFont, ImageDraw
 import matplotlib.pyplot as plt
 import numpy as np
 
-#
-# Todo: loop to mass process
-#
 directory = 'input'
 
-for filename in os.listdir(directory):
 
+def watermark():
     image = Image.open(os.path.join(directory, filename))
 
     draw = ImageDraw.Draw(image)
@@ -21,3 +18,7 @@ for filename in os.listdir(directory):
     plt.subplot(1, 2, 1)
     plt.title("black text")
     image.save(os.path.join(directory, filename))
+
+
+for filename in os.listdir(directory):
+    watermark()
