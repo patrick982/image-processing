@@ -16,9 +16,16 @@ def image_processing():
     yellow_setting = float(values["yellow_slider"])
 
     directory = input_path
+    totalFiles = 0
+    file_count = 0
+
+    # count files in directory
+    for filename in os.listdir(directory):
+        totalFiles = totalFiles + 1
 
     for filename in os.listdir(directory):
         file_name, file_extension = os.path.splitext(filename)
+        file_count = file_count + 1
 
         if file_extension == ".png" or file_extension == ".jpeg" or file_extension == ".jpg":
             # print(file_extension)
@@ -52,7 +59,8 @@ def image_processing():
             # color = ImageEnhance.Sharpness(image)
             # image = color.enhance(1.5)
 
-            popup_quick_message("In Progress - please wait")
+            popup_quick_message(
+                "In Progress - please wait " + str(file_count) + " / " + str(totalFiles))
 
             # save the result
             image.save(os.path.join(output_path, filename))
@@ -101,7 +109,7 @@ while True:
     elif event == 'Watermark':
         popup_ok("Feature not ready..")
     elif event == 'Process':
-        # ry:
+        # try:
         image_processing()
         popup_ok("done")
         # except:
