@@ -60,7 +60,7 @@ def image_processing():
             # image = color.enhance(1.5)
 
             popup_quick_message(
-                "In Progress - please wait " + str(file_count) + " / " + str(totalFiles))
+                "processing - please wait  " + str(file_count) + " / " + str(totalFiles))
 
             # save the result
             image.save(os.path.join(output_path, filename))
@@ -110,7 +110,13 @@ while True:
         popup_ok("Feature not ready..")
     elif event == 'Process':
         # try:
+        # disable all buttons during process
+        window["Process"].update(disabled=True)
+        window["Process"].update(disabled=True)
+        window["Process"].update(disabled=True)
         image_processing()
         popup_ok("done")
+        # enable buttons again
+        window["Process"].update(disabled=False)
         # except:
         #    sg.popup_error("Filepaths cannot be empty!")
