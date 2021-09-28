@@ -15,7 +15,7 @@ There is not much to add; since its pretty forward to use. Hopefully you find it
  - any OS that can run Python
 
 ### Installing & Executing
-  - the program to use is the image_gui.py
+  - the program to use is the '''image_gui.py'''
   - either package an executeable with pyinstaller or similar
   - run the prgram with your favorite command line (i.e. PowerShell on Windows)
   - no further installation process needed
