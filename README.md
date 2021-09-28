@@ -30,7 +30,7 @@ Patrick Stampler
 - [ ] watermarking features
 
 ## License
-wip
+MIT
 
 ## Acknowledgments
 this program is inspired by Gimp and the Bimp Plugin
