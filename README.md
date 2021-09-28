@@ -16,11 +16,11 @@ in-depth description
 ## Author
 Patrick Stampler
 
-## Version History
-- 0.1 Initial Release
+## Roadmap
+- [ ] add watermarking features
 
 ## License
-tbd
+wip
 
 ## Acknowledgments
 
