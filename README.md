@@ -1,4 +1,26 @@
-# image-processing
-repository for various image processing processes, focused on underwater images
+# automatic underwater-image processing
+this project should to automatically enhance images taken underwater without a lot of effort or complex, maybe expensive image manupulation tools
 
-**all programs work independend from each other so far**
+## Description
+in-depth description
+
+## Getting started
+### Dependencies
+
+### Installing
+
+### Executing program
+
+## Help
+
+## Author
+Patrick Stampler
+
+## Version History
+- 0.1 Initial Release
+
+## License
+tbd
+
+## Acknowledgments
+
