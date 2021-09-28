@@ -3,7 +3,7 @@ import warnings
 import PySimpleGUI as sg
 import os
 from PIL import Image, ImageEnhance
-from PySimpleGUI.PySimpleGUI import popup, popup_notify, popup_ok, popup_quick_message
+from PySimpleGUI.PySimpleGUI import popup, popup_error, popup_notify, popup_ok, popup_quick_message
 
 
 def image_processing():
@@ -16,6 +16,7 @@ def image_processing():
     yellow_setting = float(values["yellow_slider"])
 
     directory = input_path
+    out_directory = output_path
     totalFiles = 0
     file_count = 0
 
@@ -63,7 +64,7 @@ def image_processing():
                 "processing - please wait  " + str(file_count) + " / " + str(totalFiles))
 
             # save the result
-            image.save(os.path.join(output_path, filename))
+            image.save(os.path.join(out_directory, filename))
 
     else:
         print("No .png, or .jpeg, or .jpg File found :(")
@@ -109,14 +110,25 @@ while True:
     elif event == 'Watermark':
         popup_ok("Feature not ready..")
     elif event == 'Process':
-        # try:
+
         # disable all buttons during process
         window["Process"].update(disabled=True)
-        window["Process"].update(disabled=True)
-        window["Process"].update(disabled=True)
-        image_processing()
+        window["Watermark"].update(disabled=True)
+        window["Exit"].update(disabled=True)
+        window["Browse0"].update(disabled=True)
+        window["Browse"].update(disabled=True)
+        event, values = window.read(timeout=1)
+
+        try:
+            image_processing()
+        except:
+            popup_error("Filepath empty!")
+
         popup_ok("done")
+
         # enable buttons again
         window["Process"].update(disabled=False)
-        # except:
-        #    sg.popup_error("Filepaths cannot be empty!")
+        window["Watermark"].update(disabled=False)
+        window["Exit"].update(disabled=False)
+        window["Browse0"].update(disabled=False)
+        window["Browse"].update(disabled=False)
