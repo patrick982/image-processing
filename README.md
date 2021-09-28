@@ -1,4 +1,4 @@
-# automatic underwater-image processing
+# Automatic underwater-image processing
 this project should to automatically enhance images taken underwater without a lot of effort or complex, maybe expensive image manupulation tools
 
 ## Description
