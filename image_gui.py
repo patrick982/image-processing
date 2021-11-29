@@ -28,7 +28,7 @@ def image_processing():
         file_name, file_extension = os.path.splitext(filename)
         file_count = file_count + 1
 
-        if file_extension == ".png" or file_extension == ".jpeg" or file_extension == ".jpg":
+        if file_extension == ".png" or file_extension == ".jpeg" or file_extension == ".jpg" or file_extension == ".JPG":
             # print(file_extension)
             image = Image.open(os.path.join(directory, filename))
             # success check
